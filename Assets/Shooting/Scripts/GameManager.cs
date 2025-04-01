@@ -29,22 +29,22 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance { get; private set; }
 
     /// <summary>
-    /// Player�� ���� �����ϰ� �ִ� ����
+    /// Player의 현재 무기를 알려주는 enum
     /// </summary>
     public WeaponEnum curWeapon;
 
     /// <summary>
-    /// Player�� ���� ����ϰ� �ִ� ������ �Ǵ� ������
+    /// Player가 선택한 마법 도형을 알려주는 enum
     /// </summary>
     public MagicShape curMagicShape;
 
     /// <summary>
-    /// ���� ��Ÿ�� �̹���
+    /// 탄환 발사 쿨타임을 표시해주는 UI
     /// </summary>
     public Image cooltimeImage;
     
     /// <summary>
-    /// Player�� Transform
+    /// Player Transform
     /// </summary>
     public Transform trPlayer;
 

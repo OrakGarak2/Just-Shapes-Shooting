@@ -6,7 +6,7 @@ using JustShapesAndShooting.ObjectPool;
 public class MagicWand : Weapon
 {
     /// <summary>
-    /// LockOnBullet을 적에게 맞혀서 활성화화
+    /// LockOnBullet을 적에게 맞혀서 활성화
     /// </summary>
     [SerializeField] private bool isLockOn;
 
@@ -69,7 +69,7 @@ public class MagicWand : Weapon
 
             cooltimeImage.fillAmount = curCooltime / maxCooltime;
 
-            yield return wffu;
+            yield return waitForFixedUpdate;
         }
         
         aimingPoint.SetActive(false);

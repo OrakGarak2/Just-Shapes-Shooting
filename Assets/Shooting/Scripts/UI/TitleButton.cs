@@ -6,37 +6,37 @@ using UnityEngine.UI;
 public class TitleButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
     /// <summary>
-    /// ¸¶¿ì½º Æ÷ÀÎÅÍ°¡ ¹öÆ° À§¿¡ ¿Ã¶ó°¬À» ¶§ÀÇ ¹öÆ° À§Ä¡
+    /// ë§ˆìš°ìŠ¤ ì»¤ì„œë¥¼ ë²„íŠ¼ ìœ„ì— ê°€ì ¸ë‹¤ ëŒ”ì„ ë•Œ ë²„íŠ¼ì´ ì´ë™í•  ìœ„ì¹˜
     /// </summary>
     [SerializeField] private Vector2 btnTransformOnPointer;
 
     /// <summary>
-    /// ¸¶¿ì½º Æ÷ÀÎÅÍ°¡ ¹öÆ° À§¿¡ ¿Ã¶ó°¡Áö ¾Ê¾ÒÀ» ¶§ÀÇ ¹öÆ° À§Ä¡
+    /// ë§ˆìš°ìŠ¤ ì»¤ì„œë¥¼ ë²„íŠ¼ ìœ„ì—ì„œ ë• ì„ ë•Œ ë²„íŠ¼ì´ ì´ë™í•  ìœ„ì¹˜
     /// </summary>
     [SerializeField] private Vector2 btnTransformOffPointer;
 
     /// <summary>
-    /// ¸¶¿ì½º Æ÷ÀÎÅÍ°¡ ¹öÆ° À§¿¡ ¿Ã¶ó°¬À» ¶§ÀÇ ¹öÆ°ÀÇ x°ª
+    /// ë§ˆìš°ìŠ¤ ì»¤ì„œë¥¼ ë²„íŠ¼ ìœ„ì— ê°€ì ¸ë‹¤ ëŒ”ì„ ë•Œ ë²„íŠ¼ì´ ì´ë™í•  ìœ„ì¹˜ì˜ Xì¢Œí‘œ
     /// </summary>
     private const float onPointerPosX = 50f;
 
     /// <summary>
-    /// ¹öÆ°ÀÌ ¿òÁ÷ÀÌ´Â ¼Óµµ
+    /// ë²„íŠ¼ì˜ ì´ë™ ì†ë„
     /// </summary>
     [SerializeField] private float btnSpeed;
 
     /// <summary>
-    /// ¸¶¿ì½º Æ÷ÀÎÅÍ°¡ ¹öÆ° À§¿¡ ÀÖ´ÂÁö ¾ø´ÂÁö ¾Ë·ÁÁÖ´Â º¯¼ö
+    /// ï¿½ï¿½ï¿½ì½º ï¿½ï¿½ï¿½ï¿½ï¿½Í°ï¿½ ï¿½ï¿½Æ° ï¿½ï¿½ï¿½ï¿½ ï¿½Ö´ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ë·ï¿½ï¿½Ö´ï¿½ ï¿½ï¿½ï¿½ï¿½
     /// </summary>
     [SerializeField] private bool isOnPointer;
 
     /// <summary>
-    /// ¾Ö´Ï¸ŞÀÌ¼ÇÀÌ ³¡³µ´ÂÁö ¾Ë·ÁÁÖ´Â º¯¼ö
+    /// ï¿½Ö´Ï¸ï¿½ï¿½Ì¼ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ë·ï¿½ï¿½Ö´ï¿½ ï¿½ï¿½ï¿½ï¿½
     /// </summary>
     [SerializeField] private bool isAnimFinished = false;
      
     /// <summary>
-    /// ¸¶¿ì½º Æ÷ÀÎÅÍ°¡ ¹öÆ° À§¿¡ ÀÖÀ» ¶§ÀÇ ¹öÆ°ÀÇ »ö(¾øÀ» ¶§´Â ÇÏ¾á»ö)
+    /// ï¿½ï¿½ï¿½ì½º ï¿½ï¿½ï¿½ï¿½ï¿½Í°ï¿½ ï¿½ï¿½Æ° ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Æ°ï¿½ï¿½ ï¿½ï¿½(ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ï¾ï¿½ï¿½)
     /// </summary>
     [SerializeField] private Color onPointerColor = new Color();
 
@@ -46,26 +46,20 @@ public class TitleButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
         btnTransformOnPointer = new Vector2(onPointerPosX, btnTransformOffPointer.y);
         btnSpeed = 10.0f;
         isAnimFinished = true;
-
-        StartCoroutine(Co_ButtonMove());
     }
 
-    IEnumerator Co_ButtonMove()
-    {
-        while (true)
-        {
-            if (GetComponent<RectTransform>().anchoredPosition != btnTransformOnPointer && isOnPointer) // ÀÌ ¹öÆ°ÀÇ À§Ä¡¿Í btnTransformOnMouseÀÇ À§Ä¡°¡ ´Ù¸£´Ù¸é
-            {
-                GetComponent<RectTransform>().anchoredPosition =
-                    Vector2.Lerp(GetComponent<RectTransform>().anchoredPosition, btnTransformOnPointer, btnSpeed * Time.deltaTime);
-            }
-            else if (GetComponent<RectTransform>().anchoredPosition != btnTransformOffPointer && !isOnPointer) // ÀÌ ¹öÆ°ÀÇ À§Ä¡¿Í btnTransformOffMouseÀÇ À§Ä¡°¡ ´Ù¸£´Ù¸é
-            {
-                GetComponent<RectTransform>().anchoredPosition =
-                    Vector2.Lerp(GetComponent<RectTransform>().anchoredPosition, btnTransformOffPointer, btnSpeed * Time.deltaTime);
-            }
+    private void Update() {
+        if (!isAnimFinished) return;
 
-            yield return null;
+        if (GetComponent<RectTransform>().anchoredPosition != btnTransformOnPointer && isOnPointer)
+        {
+            GetComponent<RectTransform>().anchoredPosition =
+                Vector2.Lerp(GetComponent<RectTransform>().anchoredPosition, btnTransformOnPointer, btnSpeed * Time.deltaTime);
+        }
+        else if (GetComponent<RectTransform>().anchoredPosition != btnTransformOffPointer && !isOnPointer)
+        {
+            GetComponent<RectTransform>().anchoredPosition =
+                Vector2.Lerp(GetComponent<RectTransform>().anchoredPosition, btnTransformOffPointer, btnSpeed * Time.deltaTime);
         }
     }
 

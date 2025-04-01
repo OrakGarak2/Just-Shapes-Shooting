@@ -11,16 +11,9 @@ public class TitleButtonGroup : MonoBehaviour
     }
 
     private void FixPositionAfterAnimation()
-    {
-        TitleButton titleButton;
-        Transform childTransform;
-
-        // 애니메이션이 끝난 후 위치를 고정합니다.
-        for (int i = 0; i < transform.childCount; i++)
+    { 
+        foreach (var titleButton in GetComponentsInChildren<TitleButton>())
         {
-            childTransform = transform.GetChild(i);
-            titleButton = childTransform.GetComponent<TitleButton>();
-
             titleButton.SetButton();
         }
 

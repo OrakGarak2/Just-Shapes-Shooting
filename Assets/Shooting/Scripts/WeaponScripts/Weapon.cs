@@ -8,17 +8,14 @@ public class Weapon : MonoBehaviour
 {
     [SerializeField] protected Image cooltimeImage;
 
-    /// <summary>
-    /// wffu는 WaitForFixedUpdate의 약자
-    /// </summary>
-    protected WaitForFixedUpdate wffu = new WaitForFixedUpdate();
+    protected WaitForFixedUpdate waitForFixedUpdate = new WaitForFixedUpdate();
 
     /// <summary>
     /// 현재 남은 다음 공격까지의 시간
     /// </summary>
     protected float curCooltime;
 
-    /// <summary>걸
+    /// <summary>
     /// 이 웨폰의 공격 속도를 알려준다.
     /// </summary>
     protected float maxCooltime;
@@ -66,7 +63,7 @@ public class Weapon : MonoBehaviour
 
             cooltimeImage.fillAmount = curCooltime / maxCooltime;
 
-            yield return wffu;
+            yield return waitForFixedUpdate;
         }
         notFire = false;
         curCooltime = maxCooltime;

@@ -1,7 +1,7 @@
 using JustShapesAndShooting.ObjectPool;
 using UnityEngine;
 
-public class Bullet : MonoBehaviour // Bullet Ŭ����
+public class Bullet : MonoBehaviour
 {
     public float bulletSpeed;
     public float bulletDmg;
@@ -22,7 +22,7 @@ public class Bullet : MonoBehaviour // Bullet Ŭ����
     }
 
     /// <summary>
-    /// �Ѿ� �̵� �Լ�
+    /// 탄환 이동동
     /// </summary>
     protected virtual void BulletMove()
     {
@@ -31,11 +31,6 @@ public class Bullet : MonoBehaviour // Bullet Ŭ����
         GetComponent<Rigidbody2D>().velocity = direction * bulletSpeed;
     }
 
-    /// <summary>
-    /// źȯ�� Enemy�� �������� ȣ���ؼ�
-    /// bulletDmg��ŭ enemyHp�� ����ų �� �ֵ���
-    /// enemyAttacked�� ȣ���ϴ� �Լ�
-    /// </summary>
     protected virtual void OnTriggerEnter2D(Collider2D col)
     {
         if(col.gameObject.layer == targetLayer)
@@ -50,8 +45,7 @@ public class Bullet : MonoBehaviour // Bullet Ŭ����
     }
 
     /// <summary>
-    /// źȯ�� ���� ���ڸ��� ������� �÷��̾� ���忡�� 
-    /// ���ڱ� �Ѿ��� �����ϴ� ��ó�� ���̱⿡ ȭ�� �ۿ��� ��������� Exit ���
+    /// 벽에 닿자마자 사라지면 부자연스럽기 때문에 벽과의 충돌이 끝날 때(화면에서 벗어난 상태일 때) 릴리스
     /// </summary>
     protected virtual void OnTriggerExit2D(Collider2D col)
     {

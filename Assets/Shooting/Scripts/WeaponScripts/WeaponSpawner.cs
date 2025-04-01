@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-public class WeaponSpawn : MonoBehaviour
+public class WeaponSpawner : MonoBehaviour
 {
     public List<GameObject> weaponList = new List<GameObject>();
     public Transform weaponSpawnPoint;
@@ -12,22 +12,14 @@ public class WeaponSpawn : MonoBehaviour
         WeaponCheck();
     }
 
-    /// <summary>
-    /// ���� �����ؾ� �� ������ Ȯ���ϴ� �Լ� + ���� ����
-    /// </summary>
     void WeaponCheck()
     {
         string str_curWeapon = GameManager.Instance.curWeapon.ToString();
         GameObject foundWeapon = weaponList.Where(obj => obj.name.Contains(str_curWeapon)).First();
-        WeaponSpawnMethod(foundWeapon);
+        WeaponSpawn(foundWeapon);
     }
 
-    /// <summary>
-    /// �����ؾ� �� ������ Player�� �ڽ� ������Ʈ�� �ְ� 
-    /// źȯ ������ ���� bulletGroupSpawner�� Ȱ��ȭ�Ѵ�.
-    /// </summary>
-    /// <param name="Weapon">�����ؾ� �� ����</param>
-    void WeaponSpawnMethod(GameObject Weapon)
+    void WeaponSpawn(GameObject Weapon)
     {
         if (Weapon != null)
         {

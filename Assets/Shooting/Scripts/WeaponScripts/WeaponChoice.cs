@@ -21,7 +21,7 @@ public class WeaponChoice : MonoBehaviour
         {
             weaponIcon.SetWeaponChoice(this);
 
-            // Enum 값을 통해 배열에 할당당
+            // Enum 값을 통해 배열에 할당
             int weaponNum = (int)weaponIcon.ThisWeapon;
             weaponIcons[weaponNum] = weaponIcon.gameObject;
             chosenWeapons[weaponNum] = weaponIcon.ChosenWeapon;
