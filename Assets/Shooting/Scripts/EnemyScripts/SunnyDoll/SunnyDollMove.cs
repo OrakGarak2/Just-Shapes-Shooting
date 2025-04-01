@@ -2,11 +2,11 @@ using UnityEngine;
 
 public class SunnyDollMove : MonoBehaviour
 {
-    [Header("속도, 길이")]
+    [Header("Speed, Y Axis Range")]
     [SerializeField][Range(0f, 10f)] private float speed = 1f;
     [SerializeField][Range(0f, 10f)] private float yPosLength = 1f;
 
-    [Header("RunningTime과 Position")]
+    [Header("RunningTime, Position")]
     [SerializeField] private float runningTime = 0f;
     [SerializeField] private float xPos = 0f;
     [SerializeField] private float initialYPos = 0f;

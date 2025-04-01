@@ -19,10 +19,6 @@ public class EnemyHp : MonoBehaviour
         enemyHp = maxEnemyHp;
     }
 
-    /// <summary>
-    /// Enemy�� ���ݹ޾��� �� bulletDmg��ŭ enemyHp�� ���ҽ�Ű�� �Լ�
-    /// </summary>
-    /// <param name="bulletDamage">bulletDmg</param>
     public void enemyAttacked(float bulletDamage)
     {
         if (enemyGracePeriod || !gameObject.activeSelf) { return; }

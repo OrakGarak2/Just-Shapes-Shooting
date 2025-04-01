@@ -236,9 +236,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 156645245}
-  - component: {fileID: 156645246}
   m_Layer: 0
-  m_Name: ChooseWeapon
+  m_Name: ChosenWeapon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -262,26 +261,6 @@ Transform:
   - {fileID: 1673355063}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &156645246
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 156645244}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c48d0e2b187be8e40a0f2cddfd6f171b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  weapons:
-  - {fileID: 1104421529}
-  - {fileID: 1162051955}
-  - {fileID: 1673355061}
-  weaponIcons:
-  - {fileID: 849083806}
-  - {fileID: 1804247429}
-  - {fileID: 254401673}
 --- !u!1 &249340724
 GameObject:
   m_ObjectHideFlags: 0
@@ -407,11 +386,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 32c7306a5c1df284a99c83285c6d76c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  yourWeapons: 2
-  weaponIcon: {fileID: 0}
-  weaponIcons: {fileID: 1379652031}
-  weapon: {fileID: 1673355061}
-  weapons: {fileID: 156645245}
+  thisWeapon: 2
+  weaponChoice: {fileID: 0}
+  weaponIcon: {fileID: 254401676}
+  chosenWeapon: {fileID: 1673355061}
 --- !u!114 &254401676
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1330,11 +1308,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 32c7306a5c1df284a99c83285c6d76c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  yourWeapons: 0
-  weaponIcon: {fileID: 0}
-  weaponIcons: {fileID: 1379652031}
-  weapon: {fileID: 1104421529}
-  weapons: {fileID: 156645245}
+  thisWeapon: 0
+  weaponChoice: {fileID: 0}
+  weaponIcon: {fileID: 849083808}
+  chosenWeapon: {fileID: 1104421529}
 --- !u!1 &906088899
 GameObject:
   m_ObjectHideFlags: 0
@@ -1527,7 +1504,7 @@ GameObject:
   - component: {fileID: 1104421531}
   - component: {fileID: 1104421530}
   m_Layer: 0
-  m_Name: ChooseMiniGun
+  m_Name: ChosenMiniGun
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1747,7 +1724,7 @@ GameObject:
   - component: {fileID: 1162051957}
   - component: {fileID: 1162051956}
   m_Layer: 0
-  m_Name: ChooseShotGun
+  m_Name: ChosenShotGun
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1965,6 +1942,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1379652031}
+  - component: {fileID: 1379652032}
   m_Layer: 5
   m_Name: WeaponIcons
   m_TagString: Untagged
@@ -1994,6 +1972,20 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1379652032
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1379652030}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c48d0e2b187be8e40a0f2cddfd6f171b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  weaponIcons: []
+  chosenWeapons: []
 --- !u!1001 &1669567627
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2062,7 +2054,7 @@ GameObject:
   - component: {fileID: 1673355063}
   - component: {fileID: 1673355062}
   m_Layer: 0
-  m_Name: ChooseMagicWand
+  m_Name: ChosenMagicWand
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2263,11 +2255,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 32c7306a5c1df284a99c83285c6d76c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  yourWeapons: 1
-  weaponIcon: {fileID: 0}
-  weaponIcons: {fileID: 1379652031}
-  weapon: {fileID: 1162051955}
-  weapons: {fileID: 156645245}
+  thisWeapon: 1
+  weaponChoice: {fileID: 0}
+  weaponIcon: {fileID: 1804247431}
+  chosenWeapon: {fileID: 1162051955}
 --- !u!1 &2101606802
 GameObject:
   m_ObjectHideFlags: 0

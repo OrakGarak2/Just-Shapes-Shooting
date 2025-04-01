@@ -16,7 +16,7 @@ public class EnemyBump : MonoBehaviour
     {
         if(collision.gameObject.layer == playerLayer)
         {
-            collision.GetComponent<PlayerHp>().CheckDamage(bumpDamage, true); // Player���� ���ظ� �����鼭 ��ħ
+            collision.GetComponent<PlayerHp>().CheckDamage(bumpDamage, true);
         }
     }
 }

@@ -2235,28 +2235,13 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 8634006218614446161, guid: ddc8d84f494c018489dcfdb96ed53692, type: 3}
       insertIndex: -1
       addedObject: {fileID: 998711557}
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 7243180768981528125, guid: ddc8d84f494c018489dcfdb96ed53692, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1124283863}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ddc8d84f494c018489dcfdb96ed53692, type: 3}
 --- !u!224 &1124283862 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 8634006218614446161, guid: ddc8d84f494c018489dcfdb96ed53692, type: 3}
   m_PrefabInstance: {fileID: 1124283861}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1124283863
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 732902694}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8b6f57a5d67894a429542fe6bbbe5d98, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1126094003
 GameObject:
   m_ObjectHideFlags: 0
@@ -2698,7 +2683,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f1b1292853f8cad4f9fddb387a9a4902, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  audioMixer: {fileID: 0}
+  audioMixer: {fileID: 24100000, guid: 1dc35a7b54c516545bf2e738d0dd7057, type: 2}
   bgmSource: {fileID: 1389910789}
   effectSource: {fileID: 1389910788}
   volumeMaster: 0

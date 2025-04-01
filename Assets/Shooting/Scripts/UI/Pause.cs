@@ -32,12 +32,14 @@ public class Pause : MonoBehaviour
     public void OnPause()
     {
         Time.timeScale = 0;
+        AudioManager.Instance.PauseBGM();
         pausePanel.SetActive(true);
     }
 
     public void OffPause()
     {
         Time.timeScale = 1f;
+        AudioManager.Instance.UnPauseBGM();
         pausePanel.SetActive(false);
     }
 

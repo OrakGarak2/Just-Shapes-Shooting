@@ -20,7 +20,7 @@ public class BeamHit : MonoBehaviour
 
         if (collision.gameObject.layer == playerLayer)
         {
-            collision.GetComponent<PlayerHp>().CheckDamage(beamDamage, false); // Player���� ���ظ� ����
+            collision.GetComponent<PlayerHp>().CheckDamage(beamDamage, false);
         }
     }
 
@@ -30,7 +30,7 @@ public class BeamHit : MonoBehaviour
 
         if (collision.gameObject.layer == playerLayer)
         { 
-            collision.GetComponent<PlayerHp>().CheckDamage(beamDamage, false); // Player���� ���ظ� ����
+            collision.GetComponent<PlayerHp>().CheckDamage(beamDamage, false);
         }
     }
 }

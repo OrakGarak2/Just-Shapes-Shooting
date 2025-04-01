@@ -5,14 +5,14 @@ using UnityEngine;
 
 public class Rainy : MonoBehaviour
 {
-    [Header("�����")]
+    [Header("Raindrop")]
     [SerializeField] GameObject raindropPrefab;
     readonly float raindropSpawnPosY = 3.7f;
     readonly float raindropDelayTime = 0.2f;
     
     [SerializeField] float rainySize = 12f;
 
-    [Header("���")]
+    [Header("BackGround")]
     [SerializeField] Transform cloud1;
     [SerializeField] Transform cloud2;
     [SerializeField] GameObject bgSun;
@@ -29,13 +29,13 @@ public class Rainy : MonoBehaviour
     }
 
     /// <summary>
-    /// raindrop�� ������ ��ġ���� Ȱ��ȭ��Ű�� �ڷ�ƾ
+    /// 구름을 부르고 비가 내리게 함.
     /// </summary>
     IEnumerator RaindropSpawn()
     {
         Vector2 goalPos1 = new Vector2(cloudGoalPosX, cloud1.position.y);
         Vector2 goalPos2 = new Vector2(-cloudGoalPosX, cloud1.position.y);
-        float elapsedTime = 0f; // ��� �ð�
+        float elapsedTime = 0f; // 경과 시간
 
         Transform sunLight = bgSun.transform.GetChild(0);
         SpriteRenderer sunLightSpriteRenderer = sunLight.GetComponent<SpriteRenderer>();

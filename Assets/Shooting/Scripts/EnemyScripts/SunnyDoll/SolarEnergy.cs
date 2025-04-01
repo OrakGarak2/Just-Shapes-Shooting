@@ -5,15 +5,14 @@ using UnityEngine;
 public class SolarEnergy : MonoBehaviour
 {
     [Header("Settings")]
-    [SerializeField] private float fadeDuration = 1f; // ������ ��ȭ�� �ɸ��� �ð�
-    [SerializeField] private float rotateDuration = 1f; // ȸ���� �ɸ��� �ð�
+    [SerializeField] private float fadeDuration = 1f; // 나타나는 시간
+    [SerializeField] private float rotateDuration = 1f; // 회전하는 시간
 
     [Header("SolarEnergy")]
-    [SerializeField] private float solarEnergyDamage = 30f; // Player���� ���� �����
-    [SerializeField] private float solarEnergySpeed = 10f; // SolarEnergy�� �̵� �ӵ�
+    [SerializeField] private float solarEnergyDamage = 30f;
+    [SerializeField] private float solarEnergySpeed = 10f;
 
     private Transform playerTransform;
-    private Quaternion beginningRotate;
     private SpriteRenderer spriteRenderer;
 
     private int playerLayer;
@@ -23,7 +22,6 @@ public class SolarEnergy : MonoBehaviour
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
         playerTransform = GameManager.Instance.trPlayer;
-        beginningRotate = transform.rotation;
 
         playerLayer = LayerMask.NameToLayer("Player");
         wallLayer = LayerMask.NameToLayer("Wall");
@@ -35,48 +33,47 @@ public class SolarEnergy : MonoBehaviour
     }
 
     /// <summary>
-    /// ������Ʈ�� Fade In�ϰ�, Player�� �ٶ󺸰� ����� �ڷ�ƾ
+    /// SolarEnergy가 Fade In하고, Player를 바라보게 만드는 코루틴
     /// </summary>
     private IEnumerator Invigoration()
     {
-        float elapsedTime = 0f; // ��� �ð�
+        float elapsedTime = 0f; // 경과 시간
         Color color = spriteRenderer.color;
-        color.a = 0; // ������ 0���� �ʱ�ȭ
-        spriteRenderer.color = color; // ��������Ʈ �������� ����
+        color.a = 0;
+        spriteRenderer.color = color;
 
-        Quaternion initialRotation = transform.rotation; // �ʱ� ȸ���� ����
-        Vector2 direction = (playerTransform.position - transform.position).normalized; // Player�� ���� ���� ���
-        Quaternion targetRotation = Quaternion.LookRotation(Vector3.forward, direction); // ��ǥ ȸ���� ���
+        Quaternion initialRotation = transform.rotation; // 초기 회전값 저장
+        Vector2 direction = (playerTransform.position - transform.position).normalized; // Player를 향하는 벡터 계산
+        Quaternion targetRotation = Quaternion.LookRotation(Vector3.forward, direction); // Player를 바라보는 각도 계산
 
-        while (elapsedTime < fadeDuration/* && elapsedTime < rotateDuration*/)
+        while (elapsedTime < fadeDuration)
         {
-            elapsedTime += Time.deltaTime; // ��� �ð� ����
+            elapsedTime += Time.deltaTime;
             
             if(elapsedTime < fadeDuration)
             {    
-                color.a = Mathf.Clamp01(elapsedTime / fadeDuration); // color.a�� ���� 0�� 1 ���̿� �ִ��� Ȯ���ϰ� ��� ��, 0 �Ǵ� 1�� ��ȯ
-                                                                     // ������ ���
-                spriteRenderer.color = color; // ��������Ʈ �������� ����
+                color.a = Mathf.Clamp01(elapsedTime / fadeDuration); // Fade In
+                spriteRenderer.color = color;
             }
             if (elapsedTime < rotateDuration)
             {
-                transform.rotation = Quaternion.Slerp(initialRotation, targetRotation, elapsedTime / rotateDuration); // ȸ���� ���
+                transform.rotation = Quaternion.Slerp(initialRotation, targetRotation, elapsedTime / rotateDuration); // 부드럽게 회전전
             }
 
             yield return null;
         }
 
-        StartCoroutine(SolarEnergyMove()); // SolarEnergy �̵� ����
+        StartCoroutine(SolarEnergyMove()); // SolarEnergy 발사
     }
 
     /// <summary>
-    /// SolarEnergy �̵� �ڷ�ƾ
+    /// SolarEnergy 발사
     /// </summary>
     IEnumerator SolarEnergyMove()
     {
         while (gameObject.activeSelf)
         {
-            transform.Translate(Vector2.up * solarEnergySpeed * Time.deltaTime); // SolarEnergy �̵�
+            transform.Translate(Vector2.up * solarEnergySpeed * Time.deltaTime);
 
             yield return null;
         }
@@ -86,7 +83,7 @@ public class SolarEnergy : MonoBehaviour
     {
         if (col.gameObject.layer == playerLayer)
         {
-            col.GetComponent<PlayerHp>().CheckDamage(solarEnergyDamage, false); // Player���� ���ظ� ����
+            col.GetComponent<PlayerHp>().CheckDamage(solarEnergyDamage, false);
         }
     }
 

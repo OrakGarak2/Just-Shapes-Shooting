@@ -9,22 +9,22 @@ public class PlayerHp : MonoBehaviour
     public Image HpBar;
 
     /// <summary>
-    /// MagicShape ������ ������ �� �޴� ������
+    /// MagicShape 밖으로 나갔을 때 입을 피해
     /// </summary>
     public float outMagicShapeDamage;
 
     /// <summary>
-    /// Player�� MagicShape ������ �������� Ȯ���ϴ� �Լ�
+    /// Player가가 MagicShape 밖으로 나갔는지 여부
     /// </summary>
     private bool isOutMagicShape = false;
 
     /// <summary>
-    /// �÷��̾� ���� ������ �ð�
+    /// 무적 상태 지속 시간
     /// </summary>
     float gracePeriodTime = 1.5f;
 
     /// <summary>
-    /// ���� �������� Ȯ���ϴ� ����
+    /// 무적 상태 여부
     /// </summary>
     bool gracePeriod = false;
 
@@ -53,26 +53,15 @@ public class PlayerHp : MonoBehaviour
         wallLayer = LayerMask.NameToLayer("Wall");
     }
 
-    private void Update()
-    {
-        // ġƮŰ
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            maxHp = 1000f;
-            currentHp = maxHp;
-            HpBar.fillAmount = currentHp / maxHp;
-        }
-    }
-
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.layer == magicShapeLayer) // MagicShape ������ ��
+        if (collision.gameObject.layer == magicShapeLayer) // MagicShape 안으로 들어옴.
         {
             isOutMagicShape = false;
         }
     }
 
-    void OnTriggerExit2D(Collider2D other) // MagicShape ������ ����
+    void OnTriggerExit2D(Collider2D other) // MagicShape 밖으로 나감.
     {
         if (HpBar == null || !gameObject.activeSelf) return;
 
@@ -105,11 +94,10 @@ public class PlayerHp : MonoBehaviour
     }
 
     /// <summary>
-    /// Player�� ���� ������� ���� ��Ȳ���� Ȯ���ϰ�
-    /// ������� ���� ��Ȳ�̸� �������ŭ Hp�� ���ҽ�Ű�� �Լ�
+    /// Player가 피해를 입는 것을 확인함.
     /// </summary>
-    /// <param name="damage">Player�� ���� �����</param>
-    /// <param name="pushed">Player�� ���������� �ƴ��� Ȯ���ϴ� �Ű�����</param>
+    /// <param name="damage">Player가 입을 피해</param>
+    /// <param name="pushed">Player가 밀쳐질 것인지 여부</param>
     public void CheckDamage(float damage, bool pushed)
     {
         if (gracePeriod) return;
@@ -121,14 +109,14 @@ public class PlayerHp : MonoBehaviour
         this.GetComponent<SpriteRenderer>().color = playerColor;
         AudioManager.Instance.PlayEffect(hitSound);
 
-        StartCoroutine(Cooltimer());
+        StartCoroutine(UpdateHPBar());
 
     }
 
     /// <summary>
-    /// Cooltime ���� ���� ���� ����
+    /// HP바를 업데이트하는 코루틴
     /// </summary>
-    IEnumerator Cooltimer()
+    IEnumerator UpdateHPBar()
     {
         float elapsedTime = 0;
         while (true)
@@ -155,6 +143,7 @@ public class PlayerHp : MonoBehaviour
         if(currentHp <= 0)
         {
             Time.timeScale = 0;
+            AudioManager.Instance.StopBGM();
             GameOverPanel.SetActive(true);
         }
     }

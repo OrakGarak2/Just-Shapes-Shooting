@@ -19,9 +19,9 @@ public class SunnyDollPatterns : MonoBehaviour
 
     [Header("Camera Shake")]
     [SerializeField] CameraShake cameraShake;
-    [SerializeField] float duration;    // ī�޶� ��鸮�� �ð�
-    [SerializeField] float roughness;   // ī�޶� ��鸲�� ��ĥ��
-    [SerializeField] float magnitude;   // ī�޶��� ������ ����
+    [SerializeField] float duration;
+    [SerializeField] float roughness;
+    [SerializeField] float magnitude;
 
     [Header("Head Sprite")]
     [SerializeField] Sprite normalHead;

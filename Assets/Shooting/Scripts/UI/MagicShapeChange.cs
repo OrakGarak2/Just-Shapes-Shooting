@@ -26,15 +26,15 @@ public class MagicShapeChange : MonoBehaviour
 
             StartCoroutine(Co_FadeOutObject(objMagicShapes[(int)GameManager.Instance.curMagicShape]));
 
-            if (Enum.GetValues(typeof(MagicShape)).Length > (int)GameManager.Instance.curMagicShape + 1) // enum�� �Ҵ�� ���� ���� enum�� �������� �� enum�� + 1�� ������
-                GameManager.Instance.curMagicShape++;                                                    // curMagicShapes++
-            else                                                                                                    // enum�� ���������� �� enum�� + 1�� ũ�ų� ������
-                GameManager.Instance.curMagicShape = 0;                                                  // curMagicShapes = 0
-                                                                                                                    // (��, �� �ڵ忡 ������ ���� �ϱ� ���ؼ� enum�� ���� �Ҵ��� �� 0���� 1�� ������ ���� �Ҵ��ؾ� �Ѵ�.)
+            if (Enum.GetValues(typeof(MagicShape)).Length > (int)GameManager.Instance.curMagicShape + 1)// enum의 최댓값보다 현재 enum 값 + 1이 작다면
+                GameManager.Instance.curMagicShape++;                                                   // curMagicShapes++
+            else                                                                                        // enum의 최댓값보다 현재 enum 값 + 1이 크다면
+                GameManager.Instance.curMagicShape = 0;                                                 // curMagicShapes = 0
+                                                                                                        // (이처럼 순환 구조를 만들기 위해 enum의 마지막 값에서 다시 처음 값으로 돌아가도록 설정해야 함.)
 
             PlayerPrefs.SetInt("MagicShape", (int)GameManager.Instance.curMagicShape);
 
-            StartCoroutine(Co_FadeInObject(objMagicShapes[(int)GameManager.Instance.curMagicShape])); // enum�� �Ҵ�� ���� ����Ʈ������ ������ ���ƾ� �Ѵ�.
+            StartCoroutine(Co_FadeInObject(objMagicShapes[(int)GameManager.Instance.curMagicShape]));
         }
     }
 
@@ -50,10 +50,8 @@ public class MagicShapeChange : MonoBehaviour
 
             while (true)
             {
-
                 color.a -= Time.deltaTime * fadeSpeed;
                 obj.GetComponent<SpriteRenderer>().color = color;
-
 
                 if (color.a <= 0) { break; }
 
@@ -76,10 +74,8 @@ public class MagicShapeChange : MonoBehaviour
 
             while (true)
             {
-
                 color.a += Time.deltaTime * fadeSpeed;
                 obj.GetComponent<SpriteRenderer>().color = color;
-
 
                 if (color.a >= 1) { break; }
 

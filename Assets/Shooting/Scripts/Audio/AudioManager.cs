@@ -53,13 +53,21 @@ public class AudioManager : MonoBehaviour
 
     public void StopBGM()
     {
-        if(bgmSource != null)
-            bgmSource.Stop();
+        bgmSource.Stop();
+    }
+
+    public void PauseBGM()
+    {
+        bgmSource.Pause();
+    }
+
+    public void UnPauseBGM()
+    {
+        bgmSource.UnPause();
     }
 
     public void PlayEffect(AudioClip clip)
     {
-        // PlayOneShot �޼��� ���
         effectSource.PlayOneShot(clip);
     }
 

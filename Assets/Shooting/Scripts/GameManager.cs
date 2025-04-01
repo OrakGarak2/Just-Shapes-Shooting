@@ -16,7 +16,7 @@ namespace Enums
     /// <summary>
     /// Player�� ������ �� �ִ� ���� ���
     /// </summary>
-    public enum YourWeapons
+    public enum WeaponEnum
     {
         MiniGun,
         ShotGun,
@@ -31,7 +31,7 @@ public class GameManager : MonoBehaviour
     /// <summary>
     /// Player�� ���� �����ϰ� �ִ� ����
     /// </summary>
-    public YourWeapons curWeapon;
+    public WeaponEnum curWeapon;
 
     /// <summary>
     /// Player�� ���� ����ϰ� �ִ� ������ �Ǵ� ������
@@ -55,11 +55,11 @@ public class GameManager : MonoBehaviour
             Instance = this;
             if (PlayerPrefs.HasKey("Weapon"))
             {
-                curWeapon = (YourWeapons)PlayerPrefs.GetInt("Weapon");
+                curWeapon = (WeaponEnum)PlayerPrefs.GetInt("Weapon");
             }
             else
             {
-                curWeapon = YourWeapons.MiniGun;
+                curWeapon = WeaponEnum.MiniGun;
             }
 
             if (PlayerPrefs.HasKey("MagicShape"))

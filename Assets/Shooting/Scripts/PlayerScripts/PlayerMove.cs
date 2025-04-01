@@ -4,16 +4,15 @@ public class PlayerMove : MonoBehaviour
 {
     public float moveSpeed = 3.0f;
     Vector2 movement = new Vector2();
-    Rigidbody2D rigidbody2D;
+    Rigidbody2D rb2D;
     PlayerHp playerHp;
 
     void Start()
     {
-        rigidbody2D = GetComponent<Rigidbody2D>();
+        rb2D = GetComponent<Rigidbody2D>();
         playerHp = GetComponent<PlayerHp>();
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (playerHp.isPushed) { return; }
@@ -23,8 +22,8 @@ public class PlayerMove : MonoBehaviour
     }
 
     /// <summary>
-    /// Player¿« ¿Ãµø
-    /// (πÊ«‚≈∞∑Œ ¿Ãµø)
+    /// Player Ïù¥Îèô
+    /// (Î∞©Ìñ•ÌÇ§Î°ú Ïù¥Îèô)
     /// </summary>
     void PlayerMoving()
     {
@@ -33,12 +32,12 @@ public class PlayerMove : MonoBehaviour
 
         movement.Normalize();
 
-        rigidbody2D.velocity = movement * moveSpeed;
+        rb2D.velocity = movement * moveSpeed;
     }
 
     /// <summary>
-    /// Player¿« πÊ«‚ ∫Ø»Ø
-    /// (wasd∑Œ ∫Ø»Ø)
+    /// Player Í∞ÅÎèÑ Î≥ÄÍ≤Ω
+    /// (wasdÎ°ú Î≥ÄÍ≤Ω)
     /// </summary>
     void PlayerRotate()
     {

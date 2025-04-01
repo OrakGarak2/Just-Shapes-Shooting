@@ -6,7 +6,6 @@ public class SelectStage : MonoBehaviour
     [SerializeField] private string sceneName;
     [SerializeField] private Button btnStage;
 
-    // Start is called before the first frame update
     void Start()
     {
         btnStage = GetComponent<Button>();

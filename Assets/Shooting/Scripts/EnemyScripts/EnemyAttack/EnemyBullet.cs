@@ -20,7 +20,7 @@ public class EnemyBullet : Bullet
         alreadyPassWall = false;
         direction = (GameManager.Instance.trPlayer.position - transform.position).normalized;
 
-        // �Ѿ��� ������ ȸ������ ������ �ٶ󺸰� ��
+        // 탄환이 플레이어를 바라보게 만듦.
         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
         transform.rotation = Quaternion.Euler(new Vector3(0, 0, angle));
     }

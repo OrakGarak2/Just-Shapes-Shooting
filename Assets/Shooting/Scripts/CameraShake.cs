@@ -6,15 +6,15 @@ public class CameraShake : MonoBehaviour
     [SerializeField] Camera m_camera;
 
     /// <summary>
-    /// Ä«¸Ş¶ó¸¦ Èçµç´Ù.
+    /// ì¹´ë©”ë¼ë¥¼ í”ë“ ë‹¤.
     /// </summary>
-    /// <param name="duration">Ä«¸Ş¶ó°¡ Èçµé¸®´Â ½Ã°£</param>
-    /// <param name="roughness">Ä«¸Ş¶ó Èçµé¸²ÀÇ °ÅÄ¥±â</param>
-    /// <param name="magnitude">Ä«¸Ş¶óÀÇ ¿òÁ÷ÀÓ ¹üÀ§</param>
+    /// <param name="duration">ì¹´ë©”ë¼ê°€ í”ë“¤ë¦¬ëŠ” ì‹œê°„</param>
+    /// <param name="roughness">ì¹´ë©”ë¼ í”ë“¤ë¦¼ì˜ ê±°ì¹ ê¸°</param>
+    /// <param name="magnitude">ì¹´ë©”ë¼ì˜ ì›€ì§ì„ ë²”ìœ„</param>
     public IEnumerator Shake(float duration, float roughness, float magnitude)
     {
         float halfDuration = duration / 2;
-        float elapsed = 0f; // Èå¸¥ ½Ã°£
+        float elapsed = 0f; // íë¥¸ ì‹œê°„
         float tick = Random.Range(-10f, 10f); // 
 
         while (elapsed < duration)
@@ -23,11 +23,11 @@ public class CameraShake : MonoBehaviour
 
             tick += Time.deltaTime * roughness;
             m_camera.transform.position = new Vector3(
-                Mathf.PerlinNoise(tick, 0) - 0.5f, // XÃà¿¡ ´ëÇÑ PerlinNoise°ª »ı¼º(PerlinNoise´Â 1 ~ 0 ±îÁöÀÇ °ªÀ» ¹İÈ¯ÇÏ±â ¶§¹®¿¡ Áß¾Ó°ªÀ» 0À¸·Î ¸ÂÃçÁÖ±â À§ÇØ 0.5¸¦ »«´Ù.)
-                Mathf.PerlinNoise(0, tick) - 0.5f, // YÃà¿¡ ´ëÇÑ PerlinNoise°ª »ı¼º(À§¿Í µ¿ÀÏ)
-                -10f) * magnitude * Mathf.PingPong(elapsed, halfDuration);    // Áøµ¿ÀÇ Å©±â¸¦ Á¶Á¤ÇÏ±â À§ÇØ magnitude¸¦ °öÇÏ°í,
-                                                                              // Mathf.PingPongÀ» ÅëÇØ Ä«¸Ş¶ó°¡ »ó¿¡¼­ ÇÏ, ÁÂ¿¡¼­ ¿ì·Î ¿Ô´Ù°¬´ÙÇÏ°Ô ¸¸µé°í, 
-                                                                              // Á¡Á¡ Áøµ¿ÀÇ ÆøÀÌ Á¼¾ÆÁø´Ù.
+                Mathf.PerlinNoise(tick, 0) - 0.5f, // Xì¶•ì— ëŒ€í•œ PerlinNoiseê°’ ìƒì„±(PerlinNoiseëŠ” 1 ~ 0 ê¹Œì§€ì˜ ê°’ì„ ë°˜í™˜í•˜ê¸° ë•Œë¬¸ì— ì¤‘ì•™ê°’ì„ 0ìœ¼ë¡œ ë§ì¶°ì£¼ê¸° ìœ„í•´ 0.5ë¥¼ ëº€ë‹¤.)
+                Mathf.PerlinNoise(0, tick) - 0.5f, // Yì¶•ì— ëŒ€í•œ PerlinNoiseê°’ ìƒì„±(ìœ„ì™€ ë™ì¼)
+                -10f) * magnitude * Mathf.PingPong(elapsed, halfDuration);    // ì§„ë™ì˜ í¬ê¸°ë¥¼ ì¡°ì •í•˜ê¸° ìœ„í•´ magnitudeë¥¼ ê³±í•˜ê³ ,
+                                                                              // Mathf.PingPongì„ í†µí•´ ì¹´ë©”ë¼ê°€ ìƒì—ì„œ í•˜, ì¢Œì—ì„œ ìš°ë¡œ ì™”ë‹¤ê°”ë‹¤í•˜ê²Œ ë§Œë“¤ê³ , 
+                                                                              // ì ì  ì§„ë™ì˜ í­ì´ ì¢ì•„ì§„ë‹¤.
 
             yield return null;
         }

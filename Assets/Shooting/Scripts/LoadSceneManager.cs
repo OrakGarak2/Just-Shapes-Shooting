@@ -3,77 +3,77 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
-// Filled Image¸¦ »ç¿ëÇÏ¿© ¾ÀÀ» ·ÎµåÇÏ´Â Å¬·¡½º.
+// Filled Imageë¥¼ ì‚¬ìš©í•˜ì—¬ ì”¬ì„ ë¡œë“œí•˜ëŠ” í´ë˜ìŠ¤
 public class LoadSceneManager : MonoBehaviour
 {
-    // ´ÙÀ½¿¡ ·ÎµåÇÒ ¾ÀÀÇ ÀÌ¸§À» ÀúÀåÇÏ´Â Á¤Àû º¯¼ö.
+    // ë‹¤ìŒì— ë¡œë“œí•  ì”¬ì˜ ì´ë¦„ì„ ì €ì¥í•˜ëŠ” ì •ì  ë³€ìˆ˜
     public static string nextScene;
 
-    // ¿¡µğÅÍ¿¡¼­ Filled Image UI ¿ä¼Ò¸¦ ¿¬°áÇÏ±â À§ÇÑ Á÷·ÄÈ­µÈ ÇÊµå.
+    // ì—ë””í„°ì—ì„œ Filled Image UI ìš”ì†Œë¥¼ ì—°ê²°í•˜ê¸° ìœ„í•œ ì§ë ¬í™”ëœ í•„ë“œ
     [SerializeField] Image progressBar;
 
-    // ÆäÀÌµå È¿°ú¸¦ À§ÇÑ CanvasGroupÀ» ¿¬°áÇÏ±â À§ÇÑ Á÷·ÄÈ­µÈ ÇÊµå.
+    // í˜ì´ë“œ íš¨ê³¼ë¥¼ ìœ„í•œ CanvasGroupì„ ì—°ê²°í•˜ê¸° ìœ„í•œ ì§ë ¬í™”ëœ í•„ë“œ
     [SerializeField] CanvasGroup fadeCanvasGroup;
 
-    // ÆäÀÌµå ÀÎ/¾Æ¿ô Áö¼Ó ½Ã°£À» ¼³Á¤ÇÏ±â À§ÇÑ Á÷·ÄÈ­µÈ ÇÊµå.
+    // í˜ì´ë“œ ì¸/ì•„ì›ƒ ì§€ì† ì‹œê°„ì„ ì„¤ì •í•˜ê¸° ìœ„í•œ ì§ë ¬í™”ëœ í•„ë“œ
     [SerializeField] float fadeDuration = 1.0f;
 
     private void Awake()
     {
-        // ºñµ¿±â ¾À ·Îµå¸¦ ½ÃÀÛÇÏ´Â ÄÚ·çÆ¾À» ½ÃÀÛÇÔ.
+        // ë¹„ë™ê¸° ì”¬ ë¡œë“œë¥¼ ì‹œì‘í•˜ëŠ” ì½”ë£¨í‹´ì„ ì‹œì‘í•¨.
         StartCoroutine(LoadScene());
     }
 
-    // ´ÙÀ½ ¾ÀÀ» ¼³Á¤ÇÏ°í ·Îµù ¾ÀÀ¸·Î ÀüÈ¯ÇÏ´Â Á¤Àû ¸Ş¼­µå.
+    // ë‹¤ìŒ ì”¬ì„ ì„¤ì •í•˜ê³  ë¡œë”© ì”¬ìœ¼ë¡œ ì „í™˜í•˜ëŠ” ì •ì  ë©”ì„œë“œ
     public static void LoadScene(string sceneName)
     {
-        // ´ÙÀ½¿¡ ·ÎµåÇÒ ¾ÀÀÇ ÀÌ¸§À» ¼³Á¤ÇÔ.
+        // ë‹¤ìŒì— ë¡œë“œí•  ì”¬ì˜ ì´ë¦„ì„ ì„¤ì •í•¨.
         nextScene = sceneName;
-        // Filled Image¸¦ Ç¥½ÃÇÏ±â À§ÇØ ·Îµù ¾ÀÀ» ·ÎµåÇÔ.
+        // Filled Imageë¥¼ í‘œì‹œí•˜ê¸° ìœ„í•´ ë¡œë”© ì”¬ì„ ë¡œë“œí•¨.
         SceneManager.LoadScene("99.LoadingScene");
     }
 
-    // ´ÙÀ½ ¾ÀÀ» ºñµ¿±âÀûÀ¸·Î ·ÎµåÇÏ´Â ÄÚ·çÆ¾.
+    // ë‹¤ìŒ ì”¬ì„ ë¹„ë™ê¸°ì ìœ¼ë¡œ ë¡œë“œí•˜ëŠ” ì½”ë£¨í‹´
     IEnumerator LoadScene()
     {
-        // ÆäÀÌµå ¾Æ¿ô È¿°ú¸¦ ½ÇÇàÇÔ.
+        // í˜ì´ë“œ ì•„ì›ƒ íš¨ê³¼ë¥¼ ì‹¤í–‰í•¨.
         yield return StartCoroutine(FadeOut());
 
-        // ¾ÀÀÌ ·ÎµåµÇ±â ½ÃÀÛÇß´ÂÁö È®ÀÎÇÏ±â À§ÇØ ÇÑ ÇÁ·¹ÀÓÀ» ±â´Ù¸².
+        // ì”¬ì´ ë¡œë“œë˜ê¸° ì‹œì‘í–ˆëŠ”ì§€ í™•ì¸í•˜ê¸° ìœ„í•´ í•œ í”„ë ˆì„ì„ ê¸°ë‹¤ë¦¼.
         yield return new WaitForSeconds(0.5f);
 
-        // ´ÙÀ½ ¾ÀÀ» ºñµ¿±âÀûÀ¸·Î ·ÎµåÇÏ°í ÀÚµ¿ È°¼ºÈ­¸¦ ¹æÁöÇÔ.
+        // ë‹¤ìŒ ì”¬ì„ ë¹„ë™ê¸°ì ìœ¼ë¡œ ë¡œë“œí•˜ê³  ìë™ í™œì„±í™”ë¥¼ ë°©ì§€í•¨.
         AsyncOperation op = SceneManager.LoadSceneAsync(nextScene);
         op.allowSceneActivation = false;
 
-        // Filled Image ¾Ö´Ï¸ŞÀÌ¼ÇÀ» Á¦¾îÇÏ±â À§ÇÑ Å¸ÀÌ¸Ó.
+        // Filled Image ì• ë‹ˆë©”ì´ì…˜ì„ ì œì–´í•˜ê¸° ìœ„í•œ íƒ€ì´ë¨¸
         float timer = 0.0f;
 
-        // ¾ÀÀÌ ·ÎµåµÉ ¶§±îÁö ·çÇÁ¸¦ ¹İº¹ÇÔ.
+        // ì”¬ì´ ë¡œë“œë  ë•Œê¹Œì§€ ë£¨í”„ë¥¼ ë°˜ë³µí•¨.
         while (!op.isDone)
         {
-            // ´ÙÀ½ ÇÁ·¹ÀÓÀ» ±â´Ù¸².
+            // ë‹¤ìŒ í”„ë ˆì„ì„ ê¸°ë‹¤ë¦¼.
             yield return null;
-            // ¸¶Áö¸· ÇÁ·¹ÀÓ ÀÌÈÄ °æ°úµÈ ½Ã°£¸¸Å­ Å¸ÀÌ¸Ó¸¦ Áõ°¡½ÃÅ´.
+            // ë§ˆì§€ë§‰ í”„ë ˆì„ ì´í›„ ê²½ê³¼ëœ ì‹œê°„ë§Œí¼ íƒ€ì´ë¨¸ë¥¼ ì¦ê°€ì‹œí‚´.
             timer += Time.deltaTime;
 
-            // ¾ÀÀÌ 90% ·Îµù ÁøÇàµµ¿¡ µµ´ŞÇÏÁö ¾ÊÀº °æ¿ì.
+            // ì”¬ì´ 90% ë¡œë”© ì§„í–‰ë„ì— ë„ë‹¬í•˜ì§€ ì•Šì€ ê²½ìš°
             if (op.progress < 0.9f)
             {
-                // ·Îµù ÁøÇàµµ¿¡ ¸ÂÃç Filled Image Ã¤¿ì±â ¾çÀ» ºÎµå·´°Ô ¾Ö´Ï¸ŞÀÌ¼ÇÈ­ÇÔ.
+                // ë¡œë”© ì§„í–‰ë„ì— ë§ì¶° Filled Image ì±„ìš°ê¸° ì–‘ì„ ë¶€ë“œëŸ½ê²Œ ì• ë‹ˆë©”ì´ì…˜í™”í•¨.
                 progressBar.fillAmount = Mathf.Lerp(progressBar.fillAmount, op.progress, timer);
-                // Ã¤¿ì±â ¾çÀÌ ·Îµù ÁøÇàµµ¿¡ µµ´ŞÇÏ¸é Å¸ÀÌ¸Ó¸¦ ¸®¼ÂÇÔ.
+                // ì±„ìš°ê¸° ì–‘ì´ ë¡œë”© ì§„í–‰ë„ì— ë„ë‹¬í•˜ë©´ íƒ€ì´ë¨¸ë¥¼ ë¦¬ì…‹í•¨.
                 if (progressBar.fillAmount >= op.progress)
                 {
                     timer = 0f;
                 }
             }
-            else // ¾ÀÀÌ °ÅÀÇ ·Îµå ¿Ï·áµÈ °æ¿ì (90% ÀÌ»ó).
+            else // ì”¬ì´ ê±°ì˜ ë¡œë“œ ì™„ë£Œëœ ê²½ìš° (90% ì´ìƒ)
             {
-                // Filled Image Ã¤¿ì±â ¾çÀ» ÃÖ´ë·Î ºÎµå·´°Ô ¾Ö´Ï¸ŞÀÌ¼ÇÈ­ÇÔ.
+                // Filled Image ì±„ìš°ê¸° ì–‘ì„ ìµœëŒ€ë¡œ ë¶€ë“œëŸ½ê²Œ ì• ë‹ˆë©”ì´ì…˜í™”í•¨.
                 progressBar.fillAmount = Mathf.Lerp(progressBar.fillAmount, 1f, timer);
-                // Filled Image°¡ °¡µæ Â÷¸é ÆäÀÌµå ÀÎ È¿°ú¸¦ ½ÇÇàÇÏ°í ¾À È°¼ºÈ­¸¦ Çã¿ëÇÑ ÈÄ ·çÇÁ¸¦ Á¾·áÇÔ.
-                if (progressBar.fillAmount == 1.0f)
+                // Filled Imageê°€ ê°€ë“ ì°¨ë©´ í˜ì´ë“œ ì¸ íš¨ê³¼ë¥¼ ì‹¤í–‰í•˜ê³  ì”¬ í™œì„±í™”ë¥¼ í—ˆìš©í•œ í›„ ë£¨í”„ë¥¼ ì¢…ë£Œí•¨.
+                if (progressBar.fillAmount == 1f)
                 {
                     yield return new WaitForSeconds(0.5f);
                     yield return StartCoroutine(FadeIn());
@@ -84,14 +84,14 @@ public class LoadSceneManager : MonoBehaviour
         }
     }
 
-    // ÆäÀÌµå ÀÎ È¿°ú¸¦ À§ÇÑ ÄÚ·çÆ¾.
+    // í˜ì´ë“œ ì¸ íš¨ê³¼ë¥¼ ìœ„í•œ ì½”ë£¨í‹´
     IEnumerator FadeIn()
     {
-        // ÆäÀÌµå ÀÎÀ» ½ÃÀÛÇÒ ¶§ Äµ¹ö½º ±×·ìÀÇ ¾ËÆÄ °ªÀ» 1·Î ¼³Á¤ÇÔ.
+        // í˜ì´ë“œ ì¸ì„ ì‹œì‘í•  ë•Œ ìº”ë²„ìŠ¤ ê·¸ë£¹ì˜ ì•ŒíŒŒ ê°’ì„ 1ë¡œ ì„¤ì •í•¨.
         fadeCanvasGroup.alpha = 1f;
         float timer = 0f;
 
-        // ¼³Á¤µÈ ÆäÀÌµå ÀÎ Áö¼Ó ½Ã°£ µ¿¾È ¾ËÆÄ °ªÀ» 0À¸·Î °¨¼Ò½ÃÅ´.
+        // ì„¤ì •ëœ í˜ì´ë“œ ì¸ ì§€ì† ì‹œê°„ ë™ì•ˆ ì•ŒíŒŒ ê°’ì„ 0ìœ¼ë¡œ ê°ì†Œì‹œí‚´.
         while (timer < fadeDuration)
         {
             timer += Time.deltaTime;
@@ -99,18 +99,18 @@ public class LoadSceneManager : MonoBehaviour
             yield return null;
         }
 
-        // ÆäÀÌµå ÀÎÀÌ ¿Ï·áµÇ¸é ¾ËÆÄ °ªÀ» 0À¸·Î ¼³Á¤ÇÔ.
+        // í˜ì´ë“œ ì¸ì´ ì™„ë£Œë˜ë©´ ì•ŒíŒŒ ê°’ì„ 0ìœ¼ë¡œ ì„¤ì •í•¨.
         fadeCanvasGroup.alpha = 0f;
     }
 
-    // ÆäÀÌµå ¾Æ¿ô È¿°ú¸¦ À§ÇÑ ÄÚ·çÆ¾.
+    // í˜ì´ë“œ ì•„ì›ƒ íš¨ê³¼ë¥¼ ìœ„í•œ ì½”ë£¨í‹´
     IEnumerator FadeOut()
     {
-        // ÆäÀÌµå ¾Æ¿ôÀ» ½ÃÀÛÇÒ ¶§ Äµ¹ö½º ±×·ìÀÇ ¾ËÆÄ °ªÀ» 0À¸·Î ¼³Á¤ÇÔ.
+        // í˜ì´ë“œ ì•„ì›ƒì„ ì‹œì‘í•  ë•Œ ìº”ë²„ìŠ¤ ê·¸ë£¹ì˜ ì•ŒíŒŒ ê°’ì„ 0ìœ¼ë¡œ ì„¤ì •í•¨.
         fadeCanvasGroup.alpha = 0f;
         float timer = 0f;
 
-        // ¼³Á¤µÈ ÆäÀÌµå ¾Æ¿ô Áö¼Ó ½Ã°£ µ¿¾È ¾ËÆÄ °ªÀ» 1·Î Áõ°¡½ÃÅ´.
+        // ì„¤ì •ëœ í˜ì´ë“œ ì•„ì›ƒ ì§€ì† ì‹œê°„ ë™ì•ˆ ì•ŒíŒŒ ê°’ì„ 1ë¡œ ì¦ê°€ì‹œí‚´.
         while (timer < fadeDuration)
         {
             timer += Time.deltaTime;
@@ -118,7 +118,7 @@ public class LoadSceneManager : MonoBehaviour
             yield return null;
         }
 
-        // ÆäÀÌµå ¾Æ¿ôÀÌ ¿Ï·áµÇ¸é ¾ËÆÄ °ªÀ» 1·Î ¼³Á¤ÇÔ.
+        // í˜ì´ë“œ ì•„ì›ƒì´ ì™„ë£Œë˜ë©´ ì•ŒíŒŒ ê°’ì„ 1ë¡œ ì„¤ì •í•¨.
         fadeCanvasGroup.alpha = 1f;
     }
 }
