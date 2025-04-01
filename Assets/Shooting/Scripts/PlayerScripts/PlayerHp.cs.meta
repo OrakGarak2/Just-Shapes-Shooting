@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: b419257b81543814ea7d5b22802fa0c1
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - HpBar: {instanceID: 0}
+  - GameOverPanel: {instanceID: 0}
+  - hitSound: {fileID: 8300000, guid: 78a80d3218ec45945bae6fc65a50bf41, type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
