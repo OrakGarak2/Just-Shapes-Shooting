@@ -5,7 +5,7 @@ using UnityEngine;
 public class Food : MonoBehaviour
 {
     [SerializeField] Transform startPoint;
-    [SerializeField] Transform intermediatePoint;
+    [SerializeField] Transform middlePoint;
     public Vector2 endPoint;
 
     [SerializeField] float foodDamage;
@@ -17,10 +17,10 @@ public class Food : MonoBehaviour
     }
 
     private void OnEnable() {
-        StartCoroutine(Co_BezierCurve());
+        StartCoroutine(Co_BezierCurve(startPoint.position, middlePoint.position, endPoint));
     }
 
-    IEnumerator Co_BezierCurve(float duration = 1.0f)
+    IEnumerator Co_BezierCurve(Vector2 start, Vector2 middle, Vector2 end, float duration = 1.0f)
     {
         float time = 0f;
 
@@ -35,9 +35,9 @@ public class Food : MonoBehaviour
             // Lerp를 계속 호출하는 위의 코드보다 
             // 곱셈과 덧셈 연산만을 사용하는 아래의 코드가 더 효율적임.
 
-            transform.position = (1 - time) * (1 - time) * startPoint.position
-                                + 2 * (1 - time) * time * intermediatePoint.position
-                                + time * time * (Vector3)endPoint;
+            transform.position = (1 - time) * (1 - time) * start
+                                + 2 * (1 - time) * time * middle
+                                + time * time * end;
 
             time += Time.deltaTime / duration;
 

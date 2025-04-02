@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class IntermediatePointMove : MonoBehaviour
+public class MiddlePointMove : MonoBehaviour
 {
     // 베지어 곡선의 3점 중 중간점의 움직임
 

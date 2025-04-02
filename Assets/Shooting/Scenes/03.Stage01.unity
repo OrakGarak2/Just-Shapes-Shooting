@@ -2418,6 +2418,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1123508175}
     - target: {fileID: 1044725405811221938, guid: 858f6259a81243440a8baec8e86e2c46, type: 3}
+      propertyPath: middlePoint
+      value: 
+      objectReference: {fileID: 1502690588}
+    - target: {fileID: 1044725405811221938, guid: 858f6259a81243440a8baec8e86e2c46, type: 3}
       propertyPath: intermediatePoint
       value: 
       objectReference: {fileID: 1502690588}
@@ -2438,6 +2442,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1123508175}
     - target: {fileID: 4153418449489101480, guid: 858f6259a81243440a8baec8e86e2c46, type: 3}
+      propertyPath: middlePoint
+      value: 
+      objectReference: {fileID: 1502690588}
+    - target: {fileID: 4153418449489101480, guid: 858f6259a81243440a8baec8e86e2c46, type: 3}
       propertyPath: intermediatePoint
       value: 
       objectReference: {fileID: 1502690588}
@@ -2453,6 +2461,10 @@ PrefabInstance:
       propertyPath: startPoint
       value: 
       objectReference: {fileID: 1123508175}
+    - target: {fileID: 4223831681482817916, guid: 858f6259a81243440a8baec8e86e2c46, type: 3}
+      propertyPath: middlePoint
+      value: 
+      objectReference: {fileID: 1502690588}
     - target: {fileID: 4223831681482817916, guid: 858f6259a81243440a8baec8e86e2c46, type: 3}
       propertyPath: intermediatePoint
       value: 
@@ -2473,6 +2485,10 @@ PrefabInstance:
       propertyPath: startPoint
       value: 
       objectReference: {fileID: 1123508175}
+    - target: {fileID: 4866765306044459744, guid: 858f6259a81243440a8baec8e86e2c46, type: 3}
+      propertyPath: middlePoint
+      value: 
+      objectReference: {fileID: 1502690588}
     - target: {fileID: 4866765306044459744, guid: 858f6259a81243440a8baec8e86e2c46, type: 3}
       propertyPath: intermediatePoint
       value: 
@@ -2513,6 +2529,10 @@ PrefabInstance:
       propertyPath: startPoint
       value: 
       objectReference: {fileID: 1123508175}
+    - target: {fileID: 7032259090157244292, guid: 858f6259a81243440a8baec8e86e2c46, type: 3}
+      propertyPath: middlePoint
+      value: 
+      objectReference: {fileID: 1502690588}
     - target: {fileID: 7032259090157244292, guid: 858f6259a81243440a8baec8e86e2c46, type: 3}
       propertyPath: intermediatePoint
       value: 
@@ -3206,9 +3226,6 @@ MonoBehaviour:
   audioMixer: {fileID: 0}
   bgmSource: {fileID: 1389910789}
   effectSource: {fileID: 1389910788}
-  volumeMaster: 0
-  volumeBGM: 0
-  volumeSFX: 0
 --- !u!4 &1389910787
 Transform:
   m_ObjectHideFlags: 0
@@ -3743,7 +3760,7 @@ GameObject:
   - component: {fileID: 1502690587}
   - component: {fileID: 1502690586}
   m_Layer: 0
-  m_Name: IntermediatePoint
+  m_Name: MiddlePoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

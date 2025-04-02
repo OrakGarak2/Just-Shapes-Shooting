@@ -78,7 +78,6 @@ public class Weapon : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Q) && !notFire)
         {
             AudioManager.Instance.PlayEffect(shootingSound);
-            Debug.Log("Q");
 
             ObjectPoolManager.Instance.Get(bulletEnum, firePoint.position, firePoint.rotation);
 
