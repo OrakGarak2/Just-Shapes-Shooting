@@ -7,7 +7,7 @@ public class Rainy : MonoBehaviour
 {
     [Header("Raindrop")]
     [SerializeField] GameObject raindropPrefab;
-    readonly float raindropSpawnPosY = 3.7f;
+    readonly float raindropSpawnPosY = 3.18f;
     readonly float raindropDelayTime = 0.2f;
     
     [SerializeField] float rainySize = 12f;
