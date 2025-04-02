@@ -10,39 +10,25 @@ public class AudioManager : MonoBehaviour
     [SerializeField] private AudioSource bgmSource;
     [SerializeField] private AudioSource effectSource;
 
-    public float volumeMaster;
-    public float volumeBGM;
-    public float volumeSFX;
-
     private void Awake()
     {
         if (Instance == null)
         {
             Instance = this;
             DontDestroyOnLoad(gameObject);
-
-            if (PlayerPrefs.HasKey("VolumeMaster"))
-            {
-                volumeMaster = PlayerPrefs.GetFloat("VolumeMaster");
-                volumeBGM = PlayerPrefs.GetFloat("VolumeBGM");
-                volumeSFX = PlayerPrefs.GetFloat("VolumeSFX");
-            }
-            else
-            {
-                volumeMaster = -20f;
-                volumeBGM = -10f;
-                volumeSFX = -10f;
-            }
-
-            audioMixer.SetFloat("Master", volumeMaster);
-            audioMixer.SetFloat("BGM", volumeBGM);
-            audioMixer.SetFloat("SFX", volumeSFX);
         }
         else
         {
             Destroy(gameObject);
         }
 
+    }
+
+    private void Start()
+    {
+        if (PlayerPrefs.HasKey("Master"))   audioMixer.SetFloat("Master", PlayerPrefs.GetFloat("Master"));
+        if (PlayerPrefs.HasKey("BGM"))      audioMixer.SetFloat("BGM", PlayerPrefs.GetFloat("BGM"));
+        if (PlayerPrefs.HasKey("SFX"))      audioMixer.SetFloat("SFX", PlayerPrefs.GetFloat("SFX"));
     }
 
     public void PlayBGM(AudioClip clip)
@@ -79,5 +65,11 @@ public class AudioManager : MonoBehaviour
     public void PlayEffect()
     {
         effectSource.Play();
+    }
+
+    public void SetVolume(string type, float volume)
+    {
+        audioMixer.SetFloat(type, volume);
+        PlayerPrefs.SetFloat(type, volume);
     }
 }

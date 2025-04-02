@@ -1,92 +1,44 @@
 using UnityEngine;
 using UnityEngine.Audio;
-using UnityEngine.Rendering;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class VolumeControler : MonoBehaviour
+public class VolumeControler : MonoBehaviour, IPointerUpHandler
 {
-    [SerializeField] private Slider sliderMaster;
-    [SerializeField] private Slider sliderBGM;
-    [SerializeField] private Slider sliderSFX;
+    [SerializeField] private Slider volumeSlider;
 
-    [SerializeField] float volumeMaster;
-    [SerializeField] float volumeBGM;
-    [SerializeField] float volumeSFX;
+    [SerializeField] private string audioType;
 
-    [SerializeField] float conditioningValue = 80f;
-
-    public AudioMixer audioMixer;
+    private readonly float muteValue = -80f;
 
     private void Start()
     {
-        float[] volumes = new float[3];
-        volumes[0] = AudioManager.Instance.volumeMaster;
-        volumes[1] = AudioManager.Instance.volumeBGM;
-        volumes[2] = AudioManager.Instance.volumeSFX;
+        volumeSlider = GetComponent<Slider>();
 
-        for (int i = 0; i < volumes.Length; i++)
+        if(PlayerPrefs.HasKey(audioType))
         {
-            if (volumes[i] == -conditioningValue) 
+            float savedVolume = PlayerPrefs.GetFloat(audioType);
+
+            if(savedVolume == muteValue)
             {
-                volumes[i] = sliderMaster.minValue;
+                volumeSlider.value = volumeSlider.minValue;
+            }
+            else
+            {
+                volumeSlider.value = savedVolume;
             }
         }
-
-        sliderMaster.value = volumes[0];
-        sliderBGM.value = volumes[1];
-        sliderSFX.value = volumes[2];
     }
 
-    public void Master_Volume()
+    public void OnPointerUp(PointerEventData eventData)
     {
-        volumeMaster = sliderMaster.value;
-        // 볼륨 값을 -80에서 0으로 변환하기 위해 80을 더하고 0~1 범위의 실수로 만들기 위해 80으로 나눔.
-        AudioManager.Instance.volumeMaster = (volumeMaster + conditioningValue) / conditioningValue;
-
-        if (volumeMaster == sliderMaster.minValue)
+        if(volumeSlider.value == volumeSlider.minValue)
         {
-            volumeMaster = -conditioningValue;
-            audioMixer.SetFloat("Master", -conditioningValue); // 음소거
+            AudioManager.Instance.SetVolume(audioType, muteValue);
         }
-        else audioMixer.SetFloat("Master", volumeMaster);
-    }
-
-    public void BGM_Volume()
-    {
-        volumeBGM = sliderBGM.value;
-        // 볼륨 값을 -80에서 0으로 변환하기 위해 80을 더하고 0~1 범위의 실수로 만들기 위해 80으로 나눔.
-        AudioManager.Instance.volumeBGM = (volumeBGM + conditioningValue) / conditioningValue;
-
-        if (volumeBGM == sliderBGM.minValue)
+        else
         {
-            volumeBGM = -conditioningValue;
-            audioMixer.SetFloat("BGM", -conditioningValue); // 음소거
+            AudioManager.Instance.SetVolume(audioType, volumeSlider.value);
         }
-        else audioMixer.SetFloat("BGM", volumeBGM);
-    }
-
-    public void SFX_Volume()
-    {
-        volumeSFX = sliderSFX.value;
-        // 볼륨 값을 -80에서 0으로 변환하기 위해 80을 더하고 0~1 범위의 실수로 만들기 위해 80으로 나눔.
-        AudioManager.Instance.volumeSFX = (volumeSFX + conditioningValue) / conditioningValue;
-
-        if (volumeSFX == sliderSFX.minValue)
-        {
-            volumeSFX = -conditioningValue;
-            audioMixer.SetFloat("SFX", -conditioningValue); // 음소거
-        }
-        else audioMixer.SetFloat("SFX", volumeSFX);
-    }
-
-    public void SaveVolume()
-    {
-        AudioManager.Instance.volumeMaster = volumeMaster;
-        AudioManager.Instance.volumeBGM = volumeBGM;
-        AudioManager.Instance.volumeSFX = volumeSFX;
-
-        PlayerPrefs.SetFloat("VolumeMaster", volumeMaster);
-        PlayerPrefs.SetFloat("VolumeBGM", volumeBGM);
-        PlayerPrefs.SetFloat("VolumeSFX", volumeSFX);
     }
 }
