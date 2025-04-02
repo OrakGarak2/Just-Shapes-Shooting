@@ -31,7 +31,7 @@ public class Raindrop : MonoBehaviour
         }
     }
 
-    private void OggerExit2D(Collider2D collision)
+    private void OnTriggerExit2D(Collider2D collision)
     {
         if(collision.gameObject.layer == wallLayer)
         {
