@@ -33,7 +33,7 @@ public class MagicBullet : Bullet
 
             while (timer < duration)
             {
-                transform.position = cubicBezier(StartPos, middlePos,
+                transform.position = BezierCurve(StartPos, middlePos,
                                                  enemyTransform.position, timer / duration);
 
                 timer += Time.deltaTime;
@@ -44,7 +44,7 @@ public class MagicBullet : Bullet
         }
     }
 
-    Vector2 cubicBezier(Vector2 start, Vector2 medium, Vector2 end, float t)
+    Vector2 BezierCurve(Vector2 start, Vector2 medium, Vector2 end, float t)
     {
         /* 
         Vector2 startToMedium = Vector2.Lerp(start, medium, t);

@@ -17,10 +17,10 @@ public class Food : MonoBehaviour
     }
 
     private void OnEnable() {
-        StartCoroutine(Co_BezierCurves());
+        StartCoroutine(Co_BezierCurve());
     }
 
-    IEnumerator Co_BezierCurves(float duration = 1.0f)
+    IEnumerator Co_BezierCurve(float duration = 1.0f)
     {
         float time = 0f;
 
