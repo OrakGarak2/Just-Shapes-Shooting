@@ -11,7 +11,7 @@ public class MagicBullet : Bullet
     {
         base.Start();
 
-        bulletDmg = 1.5f;
+        bulletDmg = 2.5f;
     }
 
     protected override void Update()
@@ -46,11 +46,20 @@ public class MagicBullet : Bullet
 
     Vector2 cubicBezier(Vector2 start, Vector2 medium, Vector2 end, float t)
     {
+        /* 
         Vector2 startToMedium = Vector2.Lerp(start, medium, t);
         Vector2 mediumToEnd = Vector2.Lerp(medium, end, t);
 
         Vector2 bezierPos = Vector2.Lerp(startToMedium, mediumToEnd, t);
         return bezierPos;
+        */
+        
+        // Lerp를 계속 호출하는 위의 코드보다 
+        // 곱셈과 덧셈 연산만을 사용하는 아래의 코드가 더 효율적임.
+
+        return  (1 - t) * (1 - t) * start
+                + 2 * (1 - t) * t * medium
+                + t * t * end;
     }
 
     protected override void OnTriggerEnter2D(Collider2D col)

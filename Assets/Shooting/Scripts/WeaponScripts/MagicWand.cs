@@ -28,7 +28,7 @@ public class MagicWand : Weapon
         maxCooltime = 5f;
         curCooltime = maxCooltime;
         notFire = false;
-        waitForSeconds = new WaitForSeconds(0.1f);
+        waitForSeconds = new WaitForSeconds(0.2f);
 
         lockOnBullet = Instantiate(lockOnBullet);
         aimingPoint = lockOnBullet.GetComponent<LockOnBullet>().SetMagicWandAndLockOnBullet(this);

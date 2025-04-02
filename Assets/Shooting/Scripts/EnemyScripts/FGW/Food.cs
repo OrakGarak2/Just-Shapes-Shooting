@@ -8,10 +8,7 @@ public class Food : MonoBehaviour
     [SerializeField] Transform intermediatePoint;
     public Vector2 endPoint;
 
-    [SerializeField] float gizmoDetail;
     [SerializeField] float foodDamage;
-    List<Vector2> _gizmoPoints = new List<Vector2>();
-
     [SerializeField] int playerLayer;
 
     void Awake()
@@ -29,9 +26,18 @@ public class Food : MonoBehaviour
 
         while (time < 1f)
         {
+            /* 
             Vector2 p1 = Vector2.Lerp(startPoint.position, intermediatePoint.position, time);
             Vector2 p2 = Vector2.Lerp(intermediatePoint.position, endPoint, time);
-            transform.position = Vector2.Lerp(p1, p2, time);
+            transform.position = Vector2.Lerp(p1, p2, time); 
+            */
+
+            // Lerp를 계속 호출하는 위의 코드보다 
+            // 곱셈과 덧셈 연산만을 사용하는 아래의 코드가 더 효율적임.
+
+            transform.position = (1 - time) * (1 - time) * startPoint.position
+                                + 2 * (1 - time) * time * intermediatePoint.position
+                                + time * time * (Vector3)endPoint;
 
             time += Time.deltaTime / duration;
 
@@ -51,26 +57,5 @@ public class Food : MonoBehaviour
             collision.GetComponent<PlayerHp>().CheckDamage(foodDamage, false);
             gameObject.SetActive(false);
         }
-    }
-
-    void OnDrawGizmos()
-    {
-        _gizmoPoints.Clear();
-
-        if (startPoint == null || intermediatePoint == null || endPoint == null || gizmoDetail <= 0) { return; }
-
-        for (int i = 0; i < gizmoDetail; i++)
-        {
-            float t = (i / gizmoDetail);
-            Vector2 p3 = Vector2.Lerp(startPoint.position, intermediatePoint.position, t);
-            Vector2 p4 = Vector2.Lerp(intermediatePoint.position, endPoint, t);
-            _gizmoPoints.Add(Vector2.Lerp(p3, p4, t));
-        }
-
-        for (int i = 0; i < _gizmoPoints.Count - 1; i++)
-        {
-            Gizmos.DrawLine(_gizmoPoints[i], _gizmoPoints[i + 1]);
-        }
-        Gizmos.DrawLine(_gizmoPoints[_gizmoPoints.Count - 1], endPoint);
     }
 }
