@@ -18,6 +18,12 @@ public class MagicWand : Weapon
     [SerializeField] int targetLayer;
     [SerializeField] GameObject aimingPoint;
 
+    [Header("Attack Range")]
+    [SerializeField] CircleCollider2D attackRangeCollider;
+    [SerializeField] LineRenderer   lineRenderer;
+    [SerializeField][Range(5, 50)]  int polygonPoints;
+    [SerializeField]                float radius;
+
     WaitForSeconds waitForSeconds;
 
     protected override void Start()
@@ -28,11 +34,24 @@ public class MagicWand : Weapon
         maxCooltime = 5f;
         curCooltime = maxCooltime;
         notFire = false;
-        waitForSeconds = new WaitForSeconds(0.2f);
+        waitForSeconds = new WaitForSeconds(0.3f);
 
         lockOnBullet = Instantiate(lockOnBullet);
         aimingPoint = lockOnBullet.GetComponent<LockOnBullet>().SetMagicWandAndLockOnBullet(this);
         lockOnBullet.SetActive(false);
+
+        lineRenderer = GetComponent<LineRenderer>();
+        lineRenderer.loop = true;
+
+        attackRangeCollider = GetComponent<CircleCollider2D>();
+        radius = attackRangeCollider.radius / 2;
+    }
+
+    protected override void Update()
+    {
+        base.Update();
+
+        DrawAttackRange();
     }
 
     protected override void Shoot()
@@ -63,6 +82,7 @@ public class MagicWand : Weapon
     protected override IEnumerator Cooltimer()
     {
         notFire = true;
+
         while (curCooltime > 0)
         {
             curCooltime -= Time.deltaTime;
@@ -74,7 +94,11 @@ public class MagicWand : Weapon
         
         aimingPoint.SetActive(false);
         isLockOn = false; // 쿨타임 도중에만 MagicBullet 발사 가능
-        notFire = false; 
+        notFire = false;
+
+        attackRangeCollider.enabled = false;    
+        lineRenderer.enabled = false;
+        
         curCooltime = maxCooltime;
     }
 
@@ -107,6 +131,29 @@ public class MagicWand : Weapon
         isLockOn = true;
         notFire = false;
 
+        attackRangeCollider.enabled = true;
+        lineRenderer.enabled = true;
+
         aimingPoint.SetActive(true);
+    }
+
+    private void DrawAttackRange()
+    {
+        if(!lineRenderer.enabled) return;
+        
+        lineRenderer.positionCount = polygonPoints;
+
+        float anglePerStep = 2 * Mathf.PI / polygonPoints;
+
+        for(int i = 0; i < polygonPoints; i++)
+        {
+            Vector2 point = transform.position;
+            float angle = i * anglePerStep;
+
+            point.x += Mathf.Cos(angle) * radius;
+            point.y += Mathf.Sin(angle) * radius;
+
+            lineRenderer.SetPosition(i, point);
+        }
     }
 }

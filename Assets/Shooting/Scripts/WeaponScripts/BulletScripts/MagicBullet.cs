@@ -11,7 +11,7 @@ public class MagicBullet : Bullet
     {
         base.Start();
 
-        bulletDmg = 2.5f;
+        bulletDmg = 3.3f;
     }
 
     protected override void Update()
