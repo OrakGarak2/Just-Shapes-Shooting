@@ -61,17 +61,4 @@ public class MagicBullet : Bullet
                 + 2 * (1 - t) * t * medium
                 + t * t * end;
     }
-
-    protected override void OnTriggerEnter2D(Collider2D col)
-    {
-        if(col.gameObject.layer == targetLayer)
-        {
-            EnemyHp scriptEnemyHp = col.GetComponent<EnemyHp>();
-            if (scriptEnemyHp != null)
-            {
-                scriptEnemyHp.enemyAttacked(bulletDmg);
-                ObjectPoolManager.Instance.Release(bulletEnum, gameObject);
-            }
-        }
-    }
 }

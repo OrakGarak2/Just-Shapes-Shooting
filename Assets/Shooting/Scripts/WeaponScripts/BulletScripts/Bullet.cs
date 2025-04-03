@@ -39,7 +39,7 @@ public class Bullet : MonoBehaviour
             if (enemyHp != null)
             {
                 enemyHp.enemyAttacked(bulletDmg);
-                ObjectPoolManager.Instance.Release(bulletEnum, gameObject);
+                Release();
             }
         }
     }
@@ -51,7 +51,12 @@ public class Bullet : MonoBehaviour
     {
         if(col.gameObject.layer == WallLayer && gameObject.activeSelf)
         {
-            ObjectPoolManager.Instance.Release(bulletEnum, gameObject);
+            Release();
         }
+    }
+
+    protected virtual void Release()
+    {
+        ObjectPoolManager.Instance.Release(bulletEnum, gameObject);
     }
 }
