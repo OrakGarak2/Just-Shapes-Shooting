@@ -25,14 +25,16 @@ public class FlyingHeadPatterns : MonoBehaviour
 
     [Header("Camera Shake")]
     [SerializeField] CameraShake cameraShake;
-    [SerializeField] float duration;    // ī�޶� ��鸮�� �ð�
-    [SerializeField] float roughness;   // ī�޶� ��鸲�� ��ĥ��
-    [SerializeField] float magnitude;   // ī�޶��� ������ ����
+    [SerializeField] float duration;    // 카메라가 흔들리는 시간
+    [SerializeField] float roughness;   // 카메라 흔들림의 거칠기
+    [SerializeField] float magnitude;   // 카메라의 움직임 범위
 
     [Header("Animation")]
     [SerializeField] Animator animator;
     [SerializeField] AnimationClip clipHeadFire;
     [SerializeField] AnimationClip clipUltraBeam;
+    [SerializeField] int spinId;
+    [SerializeField] int headFireId;
 
     [Header("Player Side")]
     [SerializeField] PlayerMove playerMove;
@@ -46,6 +48,9 @@ public class FlyingHeadPatterns : MonoBehaviour
         cameraShake = GetComponent<CameraShake>();
         playerMove = GameManager.Instance.trPlayer.GetComponent<PlayerMove>();
 
+        spinId = Animator.StringToHash("Spin");
+        headFireId = Animator.StringToHash("HeadFire");
+
         StartCoroutine(Co_StartPattern());
     }
 
@@ -57,7 +62,9 @@ public class FlyingHeadPatterns : MonoBehaviour
 
         crossBeam.SetActive(true);
 
-        animator.SetTrigger("Hide");
+        int hideId = Animator.StringToHash("Hide");
+
+        animator.SetTrigger(hideId);
 
         float timer = 0;
 
@@ -80,7 +87,7 @@ public class FlyingHeadPatterns : MonoBehaviour
 
             timer = 0;
 
-            animator.SetTrigger("Hide");
+            animator.SetTrigger(hideId);
 
             yield return null;
         }
@@ -106,7 +113,7 @@ public class FlyingHeadPatterns : MonoBehaviour
         }
         else
         {
-            animator.SetTrigger("Spin");
+            animator.SetTrigger(spinId);
         }
     }
 
@@ -120,7 +127,7 @@ public class FlyingHeadPatterns : MonoBehaviour
         } while (beforeRan == ran);
         beforeRan = ran;
 
-        animator.SetInteger("HeadFire", ran);
+        animator.SetInteger(headFireId, ran);
 
         AudioManager.Instance.PlayEffect();
     }
