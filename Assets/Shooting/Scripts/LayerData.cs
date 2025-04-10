@@ -2,6 +2,5 @@ public struct LayerData // 사용하던 Layer의 위치나 이름이 변경될 �
 {
     public const int wallLayer = 3;
     public const int enemyLayer = 6;
-    public const int magicShapeLayer = 7;
-    public const int playerLayer = 8;
+    public const int playerLayer = 7;
 }

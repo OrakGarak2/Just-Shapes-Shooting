@@ -101,6 +101,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cooltimeImage: {fileID: 0}
+  weaponEnum: 2
   notFire: 0
   firePoint: {fileID: 8925561970462539629}
   bulletPrefab: {fileID: 2394764065420657126, guid: 67acd982f54498f47ac2661aaca4d9cf, type: 3}

@@ -35,7 +35,6 @@ public class PlayerHp : MonoBehaviour
     [SerializeField] private AudioClip hitSound;
     Color playerColor;
 
-    int magicShapeLayer;
     int wallLayer;
 
     void Start()
@@ -49,27 +48,20 @@ public class PlayerHp : MonoBehaviour
         gracePeriodTime = 1.5f;
         pushedSpeed = 25f;
 
-        magicShapeLayer = LayerData.magicShapeLayer;
         wallLayer = LayerData.wallLayer;
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    public void EnterMagicShape()
     {
-        if (collision.gameObject.layer == magicShapeLayer) // MagicShape 안으로 들어옴.
-        {
-            isOutMagicShape = false;
-        }
+        isOutMagicShape = false;
     }
 
-    void OnTriggerExit2D(Collider2D other) // MagicShape 밖으로 나감.
+    public void ExitMagicShape()
     {
         if (HpBar == null || !gameObject.activeSelf) return;
 
-        if (other.gameObject.layer == magicShapeLayer)
-        {
-            isOutMagicShape = true;
-            StartCoroutine(Co_OutMagicShape());
-        }
+        isOutMagicShape = true;
+        StartCoroutine(Co_OutMagicShape());
     }
 
     IEnumerator Co_OutMagicShape()

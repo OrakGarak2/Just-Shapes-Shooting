@@ -10,8 +10,8 @@ public class CrossBeam : MonoBehaviour
 
     [SerializeField] float nextBeamWaitTime;
 
-    [SerializeField] Vector2 xBeamPos;
-    [SerializeField] Vector2 yBeamPos;
+    [SerializeField] Vector2 xBeamPos = Vector2.zero;
+    [SerializeField] Vector2 yBeamPos = Vector2.zero;
 
     [SerializeField] SpriteRenderer xBeamSpriteRenderer;
     [SerializeField] SpriteRenderer yBeamSpriteRenderer;
@@ -42,12 +42,10 @@ public class CrossBeam : MonoBehaviour
         {
             playerPos = GameManager.Instance.trPlayer.position;
 
-            xBeamPos = playerPos;
-            xBeamPos.x = 0f;
+            xBeamPos.y = playerPos.y;
             xBeam.transform.position = xBeamPos;
 
-            yBeamPos = playerPos;
-            yBeamPos.y = 0f;
+            yBeamPos.x = playerPos.x;
             yBeam.transform.position = yBeamPos;
 
             isForewarning = true;

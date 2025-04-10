@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class EnemyBump : MonoBehaviour
 {
+    private PlayerHp playerHp;
+
     private int playerLayer;
     public float bumpDamage;
 
@@ -16,7 +18,12 @@ public class EnemyBump : MonoBehaviour
     {
         if(collision.gameObject.layer == playerLayer)
         {
-            collision.GetComponent<PlayerHp>().CheckDamage(bumpDamage, true);
+            if(playerHp == null)
+            {
+                playerHp = collision.GetComponent<PlayerHp>();
+            }
+            
+            playerHp.CheckDamage(bumpDamage, true);
         }
     }
 }

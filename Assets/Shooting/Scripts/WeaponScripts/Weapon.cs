@@ -3,12 +3,18 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using JustShapesAndShooting.ObjectPool;
+using Enums;
 
 public class Weapon : MonoBehaviour
 {
     [SerializeField] protected Image cooltimeImage;
 
     protected WaitForFixedUpdate waitForFixedUpdate = new WaitForFixedUpdate();
+
+    /// <summary>
+    /// 해당 무기의 enum
+    /// </summary>
+    public WeaponEnum weaponEnum;
 
     /// <summary>
     /// 현재 남은 다음 공격까지의 시간

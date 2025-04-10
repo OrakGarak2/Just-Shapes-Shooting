@@ -1,5 +1,5 @@
 using System.Collections.Generic;
-using System.Linq;
+using Enums;
 using UnityEngine;
 
 public class WeaponSpawner : MonoBehaviour
@@ -14,16 +14,22 @@ public class WeaponSpawner : MonoBehaviour
 
     void WeaponCheck()
     {
-        string str_curWeapon = GameManager.Instance.curWeapon.ToString();
-        GameObject foundWeapon = weaponList.Where(obj => obj.name.Contains(str_curWeapon)).First();
-        WeaponSpawn(foundWeapon);
+        WeaponEnum curWeapon = GameManager.Instance.curWeapon;
+        
+        foreach (var weapon in weaponList)
+        {
+            if(weapon.GetComponent<Weapon>().weaponEnum == curWeapon)
+            {
+                WeaponSpawn(weapon);
+            }
+        }
     }
 
-    void WeaponSpawn(GameObject Weapon)
+    void WeaponSpawn(GameObject weapon)
     {
-        if (Weapon != null)
+        if (weapon != null)
         {
-            GameObject temp = Instantiate(Weapon, weaponSpawnPoint.localPosition, Weapon.transform.rotation);
+            GameObject temp = Instantiate(weapon, weaponSpawnPoint.localPosition, weapon.transform.rotation);
             temp.transform.SetParent(GameManager.Instance.trPlayer, false);
         }
     }
