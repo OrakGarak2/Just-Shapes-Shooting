@@ -3,7 +3,7 @@ using UnityEngine.Audio;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class VolumeControler : MonoBehaviour, IPointerUpHandler
+public class VolumeController : MonoBehaviour, IPointerUpHandler
 {
     [SerializeField] private Slider volumeSlider;
 

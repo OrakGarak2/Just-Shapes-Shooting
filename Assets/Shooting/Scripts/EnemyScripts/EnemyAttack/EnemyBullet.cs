@@ -11,8 +11,8 @@ public class EnemyBullet : Bullet
 
     protected override void Start()
     {
-        targetLayer = LayerMask.NameToLayer("Player");
-        WallLayer = LayerMask.NameToLayer("Wall");
+        targetLayer = LayerData.playerLayer;
+        wallLayer = LayerData.wallLayer;
     }
 
     protected void OnEnable ()
@@ -41,7 +41,7 @@ public class EnemyBullet : Bullet
 
     protected override void OnTriggerExit2D(Collider2D col)
     {
-        if(col.gameObject.layer == WallLayer && gameObject.activeSelf)
+        if(col.gameObject.layer == wallLayer && gameObject.activeSelf)
         {
             if(!alreadyPassWall)    alreadyPassWall = true;
             else                    ObjectPoolManager.Instance.Release(bulletEnum, gameObject);

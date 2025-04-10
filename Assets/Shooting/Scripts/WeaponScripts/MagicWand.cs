@@ -29,7 +29,7 @@ public class MagicWand : Weapon
     protected override void Start()
     {
         base.Start();
-        targetLayer = LayerMask.NameToLayer("Enemy");
+        targetLayer = LayerData.enemyLayer;
 
         maxCooltime = 5f;
         curCooltime = maxCooltime;

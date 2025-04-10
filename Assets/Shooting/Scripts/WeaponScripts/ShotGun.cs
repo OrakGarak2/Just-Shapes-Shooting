@@ -19,7 +19,6 @@ public class ShotGun : Weapon
         if (Input.GetKeyDown(KeyCode.Q) && !notFire)
         {
             AudioManager.Instance.PlayEffect(shootingSound);
-            Debug.Log("Q");
 
             for(int i = 0; i < bulletNumber; i++)
             {

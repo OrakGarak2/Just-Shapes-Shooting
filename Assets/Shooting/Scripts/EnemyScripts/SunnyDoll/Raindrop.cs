@@ -12,8 +12,8 @@ public class Raindrop : MonoBehaviour
     [SerializeField] float raindropDamage;
 
     private void Start() {
-        playerLayer = LayerMask.NameToLayer("Player");
-        wallLayer = LayerMask.NameToLayer("Wall");
+        playerLayer = LayerData.playerLayer;
+        wallLayer = LayerData.wallLayer;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

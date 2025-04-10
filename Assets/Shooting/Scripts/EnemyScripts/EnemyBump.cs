@@ -9,7 +9,7 @@ public class EnemyBump : MonoBehaviour
     public float bumpDamage;
 
     private void Start() {
-        playerLayer = LayerMask.NameToLayer("Player");
+        playerLayer = LayerData.playerLayer;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

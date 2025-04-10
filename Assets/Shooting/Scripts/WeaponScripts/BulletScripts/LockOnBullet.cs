@@ -36,7 +36,7 @@ public class LockOnBullet : Bullet
 
     protected override void OnTriggerExit2D(Collider2D col)
     {
-        if(col.gameObject.layer == WallLayer && gameObject.activeSelf)
+        if(col.gameObject.layer == wallLayer && gameObject.activeSelf)
         {
             gameObject.SetActive(false);
         }

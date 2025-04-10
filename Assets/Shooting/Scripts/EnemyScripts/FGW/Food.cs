@@ -13,7 +13,7 @@ public class Food : MonoBehaviour
 
     void Awake()
     {
-        playerLayer = LayerMask.NameToLayer("Player");
+        playerLayer = LayerData.playerLayer;
     }
 
     private void OnEnable() {

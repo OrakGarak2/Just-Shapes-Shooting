@@ -49,8 +49,8 @@ public class PlayerHp : MonoBehaviour
         gracePeriodTime = 1.5f;
         pushedSpeed = 25f;
 
-        magicShapeLayer = LayerMask.NameToLayer("MagicShape");
-        wallLayer = LayerMask.NameToLayer("Wall");
+        magicShapeLayer = LayerData.magicShapeLayer;
+        wallLayer = LayerData.wallLayer;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

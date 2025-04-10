@@ -8,12 +8,12 @@ public class Bullet : MonoBehaviour
 
     [SerializeField] protected PoolEnum bulletEnum;
     protected int targetLayer;
-    protected int WallLayer;
+    protected int wallLayer;
 
     protected virtual void Start()
     {
-        targetLayer = LayerMask.NameToLayer("Enemy");
-        WallLayer = LayerMask.NameToLayer("Wall");
+        targetLayer = LayerData.enemyLayer;
+        wallLayer = LayerData.wallLayer;
     }
 
     protected virtual void Update()
@@ -49,7 +49,7 @@ public class Bullet : MonoBehaviour
     /// </summary>
     protected virtual void OnTriggerExit2D(Collider2D col)
     {
-        if(col.gameObject.layer == WallLayer && gameObject.activeSelf)
+        if(col.gameObject.layer == wallLayer && gameObject.activeSelf)
         {
             Release();
         }

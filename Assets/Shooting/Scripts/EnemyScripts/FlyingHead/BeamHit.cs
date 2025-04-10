@@ -11,7 +11,7 @@ public class BeamHit : MonoBehaviour
 
     void Start()
     {
-        playerLayer = LayerMask.NameToLayer("Player");
+        playerLayer = LayerData.playerLayer;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

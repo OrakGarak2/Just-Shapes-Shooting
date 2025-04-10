@@ -23,8 +23,8 @@ public class SolarEnergy : MonoBehaviour
         spriteRenderer = GetComponent<SpriteRenderer>();
         playerTransform = GameManager.Instance.trPlayer;
 
-        playerLayer = LayerMask.NameToLayer("Player");
-        wallLayer = LayerMask.NameToLayer("Wall");
+        playerLayer = LayerData.playerLayer;
+        wallLayer = LayerData.wallLayer;
     }
 
     void OnEnable()

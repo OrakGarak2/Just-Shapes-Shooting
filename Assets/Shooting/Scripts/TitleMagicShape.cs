@@ -1,14 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
+using Enums;
 using UnityEngine;
 
-public class StartMagicShape : MonoBehaviour
+public class TitleMagicShape : MonoBehaviour
 {
-    [SerializeField] string magicShapeName;
+    [SerializeField] MagicShape thisMagicShape;
 
     void Start()
     {
-        if(magicShapeName != GameManager.Instance.curMagicShape.ToString())
+        if(thisMagicShape != GameManager.Instance.curMagicShape)
         {
             gameObject.SetActive(false);
         }

@@ -5,7 +5,7 @@ using Enums;
 namespace Enums
 {
     /// <summary>
-    /// Player�� ����� �� �ִ� ������ & ������ ���
+    /// Player가 선택할 수 있는 마법 도형 enum
     /// </summary>
     public enum MagicShape
     {
@@ -14,7 +14,7 @@ namespace Enums
     }
 
     /// <summary>
-    /// Player�� ������ �� �ִ� ���� ���
+    /// Player가 선택할 수 있는 무기 enum
     /// </summary>
     public enum WeaponEnum
     {
