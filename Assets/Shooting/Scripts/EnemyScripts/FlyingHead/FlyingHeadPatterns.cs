@@ -37,7 +37,6 @@ public class FlyingHeadPatterns : MonoBehaviour
     [SerializeField] int headFireId;
 
     [Header("Player Side")]
-    [SerializeField] PlayerMove playerMove;
     [SerializeField] GameObject Spawner;
     [SerializeField] float speedMagnification = 5f;
 
@@ -46,7 +45,6 @@ public class FlyingHeadPatterns : MonoBehaviour
         enemyHp = GetComponent<EnemyHp>();
         animator = GetComponent<Animator>();
         cameraShake = GetComponent<CameraShake>();
-        playerMove = GameManager.Instance.trPlayer.GetComponent<PlayerMove>();
 
         spinId = Animator.StringToHash("Spin");
         headFireId = Animator.StringToHash("HeadFire");
@@ -141,7 +139,7 @@ public class FlyingHeadPatterns : MonoBehaviour
     void Pahse2()
     {
         Spawner.GetComponent<MagicShapeSpawn>().curMagicShape.SetActive(false);
-        playerMove.moveSpeed *= speedMagnification;
+        GameManager.Instance.trPlayer.GetComponent<PlayerMove>().moveSpeed *= speedMagnification;
         GameManager.Instance.trPlayer.GetComponent<TrailRenderer>().enabled = true;
         AudioManager.Instance.SetEffect(headFireSound);
     }

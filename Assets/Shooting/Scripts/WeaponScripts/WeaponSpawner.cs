@@ -30,7 +30,7 @@ public class WeaponSpawner : MonoBehaviour
         if (weapon != null)
         {
             GameObject temp = Instantiate(weapon, weaponSpawnPoint.localPosition, weapon.transform.rotation);
-            temp.transform.SetParent(GameManager.Instance.trPlayer, false);
+            temp.transform.SetParent(weaponSpawnPoint.parent, false);
         }
     }
 }

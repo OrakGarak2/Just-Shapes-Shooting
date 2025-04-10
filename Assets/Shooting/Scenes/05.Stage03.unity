@@ -6205,7 +6205,6 @@ MonoBehaviour:
   clipUltraBeam: {fileID: 7400000, guid: 8fe63aa95b09a334696bdde129002696, type: 2}
   spinId: 0
   headFireId: 0
-  playerMove: {fileID: 0}
   Spawner: {fileID: 1622818318}
   speedMagnification: 5
 --- !u!114 &1952068147
